@@ -147,3 +147,19 @@ export function getfile(e) {
     params: e
   })
 }
+/*获取链相关数量*/
+export function getMainPageChainInfo(e) {
+  return request({
+    url: 'chain/getMainPageChainInfo',
+    method: 'post',
+    data: e
+  })
+}
+/*获取链市值，交易量，tps相关信息*/
+export function getMainPageTxByDay(e) {
+  return request({
+    url: 'chain/getMainPageTxByDay',
+    method: 'post',
+    data: e
+  })
+}

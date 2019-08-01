@@ -15,8 +15,8 @@
       </div>
       <div class="tab_select" style="display: inline-block;float: right">
         <span class="go_home" @click="go_home()">{{$t("header.header_home")}}</span>
-        <span class="go_home" @click="go_dev()"
-              style="font-size: 14px">{{$t("header.header_development_document")}}</span>
+        <!--<span class="go_home" @click="go_dev()"-->
+              <!--style="font-size: 14px">{{$t("header.header_development_document")}}</span>-->
 
       </div>
 
@@ -71,8 +71,8 @@
 <style scoped>
   .el-header {
     display: block;
-    background-color: #F2F2F2;
-    color: #333;
+    background-color: #081237;
+    /*color: #333;*/
     height: 60px;
     padding: 0;
     line-height: 60px;
@@ -83,8 +83,8 @@
     width: 200px;
     height: 50px;
     position: relative;
-    top: 8px;
-    background: url("../assets/images/logo_1.png") no-repeat;
+    top: 12px;
+    background: url("../assets/images/logo_2.png") no-repeat;
     background-size: 75%
   }
 
@@ -100,7 +100,7 @@
 
   .go_home {
     cursor: pointer;
-    color: #800080;
+    color: #ffffff;
     margin-right: 20px;
     padding: 0 20px;
     user-select: none;
@@ -108,7 +108,7 @@
 
   .el-dropdown-link {
     cursor: pointer;
-    color: #800080;
+    color: #ffffff;
     user-select: none;
   }
 </style>

@@ -4,6 +4,7 @@ import {Message, MessageBox} from 'element-ui'
 const service = axios.create({
   baseURL: 'http://' + window.location.host+'/PublicChainBrowser/',
   // baseURL: 'http://publicchain.thinkey.xyz/PublicChainBrowser/',
+  // baseURL: 'http://192.168.1.108:8500/PublicChainBrowser/',
   // withCredentials: true, // 跨域请求时发送 cookies
   timeout: 200000 // 请求超时时间
 })

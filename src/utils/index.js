@@ -6,7 +6,7 @@ export default {
     /*table=>header颜色*/
     Vue.prototype.tableHeaderColor = function ({row, column, rowIndex, columnIndex}) {
       if (rowIndex === 0) {
-        return 'background-color:#f1f1f1 ;color: #333;font-weight: 600;font-size: 15px;'
+        return 'background-color:#ffffff ;color: #333;font-weight: 600;font-size: 15px;height:58px;'
       }
     }
     /*hash字符串截取*/

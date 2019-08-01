@@ -37,28 +37,105 @@
     <div class="hc_tishi">
       {{$t("prompt.prompt_1")}}
     </div>
-    <div class="hc_overview">
-      <div>
-        <span class="hc_overview_he">{{$t("title.thk_price")}}</span><br/>
-        <br/>
-        <!--￥{{marke.thkPrice}}-->
-        ￥
+    <div class="chain_part">
+      <div class="chain_part_item">
+        <div class="chain_part_padding">
+          <div class="chain_part_item_title">
+            主链
+          </div>
+          <div class="chain_part_item_img">
+            <div class="chain_part_item_text">
+              {{chain_info.mainChainCount}}
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <span class="hc_overview_he">{{$t("title.network_market_value")}}</span>
-        <br/>
-        <br/>
-        <!--￥{{marke.marketValue}}-->
-        ￥
+      <div class="chain_part_item">
+        <div class="chain_part_padding">
+          <div class="chain_part_item_title">
+            分链
+          </div>
+          <div class="chain_part_item_img_1">
+            <div class="chain_part_item_text">
+              {{chain_info.childrensCount}}
+            </div>
+          </div>
+        </div>
       </div>
-      <div><span class="hc_overview_he">{{$t("title.total_online_transaction_volume")}}</span>
-        <br/>
-        <br/>
-        {{marke.txCount}} ( {{marke.tps}}TPS )
+      <div class="chain_part_item">
+        <div class="chain_part_padding">
+          <div class="chain_part_item_title">
+            分片链
+          </div>
+          <div class="chain_part_item_img_2">
+            <div class="chain_part_item_text">
+              {{chain_info.childrensSon}}
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="chain_part_item">
+        <div class="chain_part_padding">
+          <div class="chain_part_item_title">
+            数据节点
+          </div>
+          <div class="chain_part_item_img_3">
+            <div class="chain_part_item_text">
+              {{chain_info.dataNodeCount}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chain_part_item">
+        <div class="chain_part_padding">
+          <div class="chain_part_item_title">
+            共识节点
+          </div>
+          <div class="chain_part_item_img_4">
+            <div class="chain_part_item_text">
+              {{chain_info.commonCount}}
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div class="hc_tishi" style="margin-bottom: 30px">
-      {{$t("prompt.prompt_2")}}
+    <div class="block_related">
+      <div class="block_related_item_1">
+        <div class="block_related_item_padding">
+          <div class="chain_part_item_title">
+            全网价值
+          </div>
+          <div class="chain_part_item_img_6">
+            <div class="chain_part_item_text_1">
+              2 亿
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block_related_item_2">
+        <div class="block_related_item_padding">
+          <div class="chain_part_item_title">
+            全网交易总量
+          </div>
+          <div id="echats_2" style="width:110%;height:100%">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="block_related_item_3">
+        <div class="block_related_item_padding">
+          <div class="chain_part_item_title">
+            TPS
+          </div>
+          <div id="echats_1" style="width:120%;height:120%">
+
+          </div>
+        </div>
+
+      </div>
     </div>
     <div class="hc_overview hc_overview_1">
       <div>
@@ -208,7 +285,8 @@
         :label="$t('table.transaction_hash')"
         align="center">
         <template slot-scope="scope">
-          <span class="to_tr color_choose" @click="see_transaction_information(scope.row.chainId,scope.row.txType,scope.row.hash)">{{slice_hash(scope.row.hash)}}</span>
+          <span class="to_tr color_choose"
+                @click="see_transaction_information(scope.row.chainId,scope.row.txType,scope.row.hash)">{{slice_hash(scope.row.hash)}}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -238,7 +316,8 @@
         :label="$t('table.initiator')"
         align="center">
         <template slot-scope="scope">
-          <span class="to_tr color_choose" @click="to_address_interface(0,scope.row.chainId,scope.row.from,scope.row.txType)">{{slice_hash(scope.row.from)}}</span>
+          <span class="to_tr color_choose"
+                @click="to_address_interface(0,scope.row.chainId,scope.row.from,scope.row.txType)">{{slice_hash(scope.row.from)}}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -264,7 +343,8 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-button style="width: 100%;margin-bottom: 50px;margin-top: 20px" type="primary" @click="to_transaction_information()">
+    <el-button style="width: 100%;margin-bottom: 50px;margin-top: 20px" type="primary"
+               @click="to_transaction_information()">
       {{$t("title.see_more_deals")}}
     </el-button>
   </div>
@@ -276,8 +356,11 @@
     getMainChainStat,
     getChainStatByType,
     getBlockNewTxPage,
-    getBlockDataByPage
+    getBlockDataByPage,
+    getMainPageChainInfo,
+    getMainPageTxByDay
   } from '../../api/interface'
+  import echarts from 'echarts'
 
   export default {
     name: "idnex",
@@ -310,7 +393,9 @@
           {'name': 'Cross-chain transfer deposit', 'value': 5},
           {'name': 'Cross-chain transfer cancellation', 'value': 6},
         ],
-        set_sta:'',
+        set_sta: '',
+        chain_info: '',
+        chain_market_info: [],
       }
     },
     methods: {
@@ -318,6 +403,7 @@
       getMainPageInfo() {
         getMainPageInfo().then(response => {
           this.marke = response.data
+          this.drawing()
         })
       },
       /*获取主链信息*/
@@ -623,7 +709,7 @@
         })
       },
       /*点击交易信息=>交易hash=>到达几种交易详情*/
-      see_transaction_information(id,type,hash){
+      see_transaction_information(id, type, hash) {
         let data = {
           'page': 1,
           'chainId': id.toString(),
@@ -669,8 +755,8 @@
 
 
       },
-       /*定时刷新数据,10s一次*/
-      timed_refresh(){
+      /*定时刷新数据,10s一次*/
+      timed_refresh() {
         let _this = this
         this.set_sta = setInterval(function () {
           _this.getMainPageInfo()
@@ -678,6 +764,107 @@
           _this.getChainStatByType()
           _this.getBlockNewTxPage()
         }, 10000)
+      },
+      /*获取链相关信息*/
+      chain_related_quantity() {
+        getMainPageChainInfo().then(response => {
+          this.chain_info = response.data
+        })
+      },
+      /*获取链市值，交易量，tps相关信息*/
+      chain_market_related() {
+        getMainPageTxByDay().then(response => {
+          this.chain_market_info[0] = []
+          this.chain_market_info[1] = []
+
+          response.data.forEach((value, index, arr) => {
+            this.chain_market_info[0].push(value.day)
+            this.chain_market_info[1].push(value.txCount)
+          })
+          this.drawing_1()
+        })
+      },
+      /*绘图*/
+      drawing() {
+        let myChart = echarts.init(document.getElementById('echats_1'));
+        let option = {
+          series: [
+            {
+              min: 0,
+              max: 60000,
+              type: 'gauge',
+              data: [{value: this.marke.tps,}],
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: [
+                    [1, new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                      {
+                        offset: 0.1,
+                        color: "#BE55FF"
+                      },
+                      {
+                        offset: 0.2,
+                        color: "#964EFF"
+                      },
+                      {
+                        offset: 0.5,
+                        color: "#613BFF"
+                      }
+                    ])
+                    ]
+                  ]
+
+                }
+              },
+              detail: {
+                offsetCenter: [0, '60%'],
+                textStyle: {
+                  fontWeight: 'bolder',
+                  fontSize: 15
+                }
+              },
+            },
+
+          ]
+        };
+        myChart.setOption(option);
+      },
+      drawing_1() {
+        let myChart2 = echarts.init(document.getElementById('echats_2'));
+        let option2 = {
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: this.chain_market_info[0]
+          },
+          yAxis: {
+            type: 'value',
+
+          },
+          series: [
+            {
+              type: 'line',
+              smooth: true,
+              symbol: 'none',
+              sampling: 'average',
+              itemStyle: {
+                color: '#AB62F5'
+              },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: '#B4A3E6'
+                }, {
+                  offset: 1,
+                  color: '#EAD5F3'
+                }])
+              },
+              data: this.chain_market_info[1]
+            }
+          ]
+        };
+        myChart2.setOption(option2);
       }
     }
     ,
@@ -693,6 +880,17 @@
       this.getChainStatByType()
       this.getBlockNewTxPage()
       this.timed_refresh()
+      this.chain_related_quantity()
+      this.chain_market_related()
+
+    },
+    mounted() {
+      window.onresize = () => {
+        let myChart = echarts.init(document.getElementById('echats_1'));
+        let myChart1 = echarts.init(document.getElementById('echats_2'));
+        myChart.resize();
+        myChart1.resize();
+      };
     }
     ,
     computed: {
@@ -722,6 +920,143 @@
   }
 </style>
 <style scoped>
+  #echats_1 {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    left: -10%;
+    top: -12%;
+  }
+
+  #echats_2 {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    /*left: -10%;*/
+    top: -8%;
+  }
+
+  .block_related {
+    width: 100%;
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .chain_part_item_img {
+    background: url("../../assets/images/circle_1.png") no-repeat;
+    background-position: center center;
+    background-size: 55%;
+    height: 75%;
+    margin: 0 auto;
+  }
+
+  .chain_part_item_img_1 {
+    background: url("../../assets/images/circle_2.png") no-repeat;
+    background-position: center center;
+    background-size: 55%;
+    height: 75%;
+    margin: 0 auto;
+  }
+
+  .chain_part_item_img_2 {
+    background: url("../../assets/images/circle_3.png") no-repeat;
+    background-position: center center;
+    background-size: 55%;
+    height: 75%;
+    margin: 0 auto;
+  }
+
+  .chain_part_item_img_3 {
+    background: url("../../assets/images/circle_4.png") no-repeat;
+    background-position: center center;
+    background-size: 55%;
+    height: 75%;
+    margin: 0 auto;
+  }
+
+  .chain_part_item_img_4 {
+    background: url("../../assets/images/circle_5.png") no-repeat;
+    background-position: center center;
+    background-size: 55%;
+    height: 75%;
+    margin: 0 auto;
+  }
+
+  .chain_part_item_img_6 {
+    background: url("../../assets/images/circle_bg.png") no-repeat;
+    background-position: center center;
+    background-size: 55%;
+    height: 75%;
+    margin: 0 auto;
+  }
+
+  .chain_part_item_text {
+    font-size: 25px;
+    text-align: center;
+    line-height: 7
+  }
+
+  .chain_part_item_text_1 {
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 4.5;
+    color: #5D14CE;
+  }
+
+  .chain_part_item_title {
+    font-size: 17px;
+  }
+
+  .chain_part {
+    width: 100%;
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .chain_part_padding {
+    padding: 8%;
+    /*height: 100%;*/
+  }
+
+  .block_related_item_padding {
+    padding: 20px;
+    height: 100%;
+    width: 90%;
+  }
+
+  .chain_part_item {
+    width: 17%;
+    height: 240px;
+    background-color: #ffffff;
+    /*border-radius: 5px;*/
+  }
+
+  .block_related_item_1 {
+    width: 25%;
+    height: 300px;
+    background-color: #ffffff;
+    /*border-radius: 5px;*/
+  }
+
+  .block_related_item_2 {
+    width: 43%;
+    height: 300px;
+    background-color: #ffffff;
+    /*border-radius: 5px;*/
+  }
+
+  .block_related_item_3 {
+    width: 25%;
+    height: 300px;
+    background-color: #ffffff;
+    /*border-radius: 5px;*/
+  }
+
   .hc_overview_he {
     display: inline-block;
     height: 22px;
@@ -733,10 +1068,11 @@
   }
 
   .hc_overview {
-    border: 1px solid #DCDFE6;
+    /*border: 1px solid #DCDFE6;*/
     width: 100%;
     display: flex;
     /*justify-content: space-between;*/
+    background-color: #ffffff;
   }
 
   .hc_overview div {
@@ -812,15 +1148,20 @@
   .hc_search {
     display: flex;
     margin-bottom: 20px;
-    /*justify-content: space-between;*/
+    justify-content: space-between;
   }
 
   .hc_search1_1 {
-    width: 400px;
+    width: 40%;
   }
 
   .hc_search1_2 {
-    width: 400px;
-    margin-left: 150px;
+    width: 40%;
+  }
+
+  .hc_search_submit {
+    width: 100px;
+    /*background-color: #634DFF;*/
+    border: none;
   }
 </style>
