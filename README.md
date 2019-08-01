@@ -1,6 +1,4 @@
-# demo
-
-> A Vue.js project
+# Browser-html
 
 ## Build Setup
 
