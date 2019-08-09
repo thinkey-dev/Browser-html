@@ -1,6 +1,4 @@
-# Browser-html
-
-## Build Setup
+# Browser
 
 ``` bash
 # install dependencies
