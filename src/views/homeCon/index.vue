@@ -933,17 +933,23 @@
 
           this.NewTickers_2=(Number(this.NewTickers_1)/10).toFixed(3)
         }
-        return this.$store.getters.language,this.NewTickers_2;
+        return this.NewTickers_2;
+      },
+      lang_1(){
+        return this.$store.getters.language;
       }
     }
     ,
     watch: {
-      lang(a, b) {
+      lang_1(a, b) {
         if (a == 'zh') {
           this.is_zh = true
         } else {
           this.is_zh = false
         }
+      },
+      lang(a, b) {
+
       }
     },
     beforeDestroy() {
