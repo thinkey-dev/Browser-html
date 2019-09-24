@@ -100,44 +100,44 @@
       </div>
 
     </div>
-    <div class="block_related">
-      <div class="block_related_item_1">
-        <div class="block_related_item_padding">
-          <div class="chain_part_item_title">
-            {{$t("title.network_market_value")}}
-          </div>
-          <div class="chain_part_item_img_6">
-            <div class="chain_part_item_text_1">
-              $ {{NewTickers_2}} {{$t("title.billion")}}
-            </div>
-          </div>
-        </div>
-      </div>
+    <!--<div class="block_related">-->
+      <!--<div class="block_related_item_1">-->
+        <!--<div class="block_related_item_padding">-->
+          <!--<div class="chain_part_item_title">-->
+            <!--{{$t("title.network_market_value")}}-->
+          <!--</div>-->
+          <!--<div class="chain_part_item_img_6">-->
+            <!--<div class="chain_part_item_text_1">-->
+              <!--$ {{NewTickers_2}} {{$t("title.billion")}}-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
 
-      <div class="block_related_item_2">
-        <div class="block_related_item_padding">
-          <div class="chain_part_item_title">
+      <!--<div class="block_related_item_2">-->
+        <!--<div class="block_related_item_padding">-->
+          <!--<div class="chain_part_item_title">-->
 
-            {{$t("title.total_online_transaction_volume")}}
-          </div>
-          <div id="echats_2" style="width:110%;height:100%">
+            <!--{{$t("title.total_online_transaction_volume")}}-->
+          <!--</div>-->
+          <!--<div id="echats_2" style="width:110%;height:100%">-->
 
-          </div>
-        </div>
-      </div>
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
 
-      <div class="block_related_item_3">
-        <div class="block_related_item_padding">
-          <div class="chain_part_item_title">
-            TPS
-          </div>
-          <div id="echats_1" style="width:120%;height:120%">
+      <!--<div class="block_related_item_3">-->
+        <!--<div class="block_related_item_padding">-->
+          <!--<div class="chain_part_item_title">-->
+            <!--TPS-->
+          <!--</div>-->
+          <!--<div id="echats_1" style="width:120%;height:120%">-->
 
-          </div>
-        </div>
+          <!--</div>-->
+        <!--</div>-->
 
-      </div>
-    </div>
+      <!--</div>-->
+    <!--</div>-->
     <div class="hc_overview hc_overview_1">
       <div>
         <span style="display: inline-block;line-height: 80px;font-size: 18px" class="color_choose"
@@ -404,12 +404,12 @@
     },
     methods: {
       /*获取货币信息*/
-      getMainPageInfo() {
-        getMainPageInfo().then(response => {
-          this.marke = response.data
-          this.drawing()
-        })
-      },
+      // getMainPageInfo() {
+      //   getMainPageInfo().then(response => {
+      //     this.marke = response.data
+      //     this.drawing()
+      //   })
+      // },
       /*获取网络市值*/
       getTickers() {
         getNewTickers().then(response => {
@@ -789,11 +789,11 @@
       timed_refresh() {
         let _this = this
         this.set_sta = setInterval(function () {
-          _this.getMainPageInfo()
+          // _this.getMainPageInfo()
           _this.getMainChainStat()
           _this.getChainStatByType()
           _this.getBlockNewTxPage()
-          _this.getTickers()
+          // _this.getTickers()
         }, 10000)
       },
       /*获取链相关信息*/
@@ -803,18 +803,18 @@
         })
       },
       /*获取链市值，交易量，tps相关信息*/
-      chain_market_related() {
-        getMainPageTxByDay().then(response => {
-          this.chain_market_info[0] = []
-          this.chain_market_info[1] = []
-
-          response.data.forEach((value, index, arr) => {
-            this.chain_market_info[0].push(value.day)
-            this.chain_market_info[1].push(value.txCount)
-          })
-          this.drawing_1()
-        })
-      },
+      // chain_market_related() {
+      //   getMainPageTxByDay().then(response => {
+      //     this.chain_market_info[0] = []
+      //     this.chain_market_info[1] = []
+      //
+      //     response.data.forEach((value, index, arr) => {
+      //       this.chain_market_info[0].push(value.day)
+      //       this.chain_market_info[1].push(value.txCount)
+      //     })
+      //     this.drawing_1()
+      //   })
+      // },
       /*绘图*/
       drawing() {
         let myChart = echarts.init(document.getElementById('echats_1'));
@@ -906,14 +906,14 @@
         this.is_zh = false
       }
       this.chain_list = this.getChainInfoStruct()
-      this.getMainPageInfo()
+      // this.getMainPageInfo()
       this.getMainChainStat()
       this.getChainStatByType()
       this.getBlockNewTxPage()
       this.timed_refresh()
       this.chain_related_quantity()
-      this.chain_market_related()
-      this.getTickers()
+      // this.chain_market_related()
+      // this.getTickers()
 
     },
     mounted() {
