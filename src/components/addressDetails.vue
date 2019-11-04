@@ -4,7 +4,7 @@
       {{$t('title.blockchain_details')}}
     </div>
     <div class="con_title" style="font-size: 17px">
-      {{$t('title.address_de')}}： <span style="color: #82848a;margin-left: 20px">{{get_data.address}}</span>
+      {{$t('title.address_de')}}： <span style="color: #82848a;margin-left: 20px">{{slice_address1(get_data.address)}}</span>
     </div>
     <div class="con_title" style="font-size: 17px">
       {{$t('title.amount')}}： <span style="color: #82848a;margin-left: 50px">{{scientificCounting(account_data.balances)}} <span>TUE</span></span>
@@ -65,7 +65,7 @@
         align="center">
         <template slot-scope="scope">
           <span :class="is_click(scope.row.txType,scope.row.from)"
-                @click="view_initiator(scope.row.chainId,scope.row.from,scope.row.txType)">{{slice_hash(scope.row.from)}}</span>
+                @click="view_initiator(scope.row.chainId,scope.row.from,scope.row.txType)">{{slice_address(scope.row.from)}}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -73,7 +73,7 @@
         align="center">
         <template slot-scope="scope">
           <span :class="is_click_1(scope.row.txType,scope.row.to)"
-                @click="view_recipient(scope.row.chainId,scope.row.to,scope.row.txType)">{{slice_hash(scope.row.to)}}</span>
+                @click="view_recipient(scope.row.chainId,scope.row.to,scope.row.txType)">{{slice_address(scope.row.to)}}</span>
         </template>
       </el-table-column>
       <el-table-column

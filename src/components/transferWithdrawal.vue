@@ -59,7 +59,7 @@
           {{$t('table.initiator')}}
         </div>
         <div class="ct_all_con_right show_color_choose" @click="to_address_details(all_data.chainId,all_data.from)">
-          {{all_data.from}}
+          {{slice_address1(all_data.from)}}
         </div>
       </div>
       <div class="ct_all_con">

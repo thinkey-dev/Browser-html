@@ -59,7 +59,7 @@
           {{$t('table.receiver')}}
         </div>
         <div class="ct_all_con_right show_color_choose" @click="to_contract_details(all_data.chainId,all_data.to)">
-          {{all_data.to}}
+          {{slice_address1(all_data.to)}}
         </div>
       </div>
       <div class="ct_all_con">

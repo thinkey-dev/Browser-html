@@ -205,14 +205,14 @@
         :label="$t('table.initiator')"
         align="center">
         <template slot-scope="scope">
-          <span class="to_tr show_color_choose" @click="to_address_details(0,scope.row.chainId,scope.row.from,scope.row.txType)">{{slice_hash(scope.row.from)}}</span>
+          <span class="to_tr show_color_choose" @click="to_address_details(0,scope.row.chainId,scope.row.from,scope.row.txType)">{{slice_address(scope.row.from)}}</span>
         </template>
       </el-table-column>
       <el-table-column
         :label="$t('table.receiver')"
         align="center">
         <template slot-scope="scope">
-          <span :class="scope.row.txType==1?'to_tr':'to_tr show_color_choose'" @click="to_address_details(1,scope.row.chainId,scope.row.to,scope.row.txType)">{{slice_hash(scope.row.to)}}</span>
+          <span :class="scope.row.txType==1?'to_tr':'to_tr show_color_choose'" @click="to_address_details(1,scope.row.chainId,scope.row.to,scope.row.txType)">{{slice_address(scope.row.to)}}</span>
         </template>
       </el-table-column>
       <el-table-column

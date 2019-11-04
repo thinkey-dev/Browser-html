@@ -46,14 +46,14 @@
         :label="$t('table.initiator')"
         align="center">
         <template slot-scope="scope">
-          <span class="to_tr show_color_choose" @click="to_address_details(all_data.chainId,all_data.from)">{{slice_hash(scope.row.from)}}</span>
+          <span class="to_tr show_color_choose" @click="to_address_details(all_data.chainId,all_data.from)">{{slice_address(scope.row.from)}}</span>
         </template>
       </el-table-column>
       <el-table-column
         :label="$t('table.receiver')"
         align="center">
         <template slot-scope="scope">
-          <span>{{slice_hash(scope.row.to)}}</span>
+          <span>{{slice_address(scope.row.to)}}</span>
         </template>
       </el-table-column>
       <el-table-column

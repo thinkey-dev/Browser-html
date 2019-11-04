@@ -65,7 +65,7 @@
           {{$t('table.issuer')}}
         </div>
         <div class="it_all_con_right show_color_choose" @click="to_address_details(all_data.chainId,all_data.from)">
-          {{all_data.from}}
+          {{slice_address1(all_data.from)}}
         </div>
       </div>
       <div class="it_all_con">
@@ -73,7 +73,7 @@
           {{$t('table.recipient')}}
         </div>
         <div class="it_all_con_right show_color_choose">
-          <span class="to_tr color_choose" @click="to_address_details(all_data.chainId,all_data.to)">{{all_data.to}}</span>
+          <span class="to_tr color_choose" @click="to_address_details(all_data.chainId,all_data.to)">{{slice_address1(all_data.to)}}</span>
         </div>
       </div>
       <div class="it_all_con">

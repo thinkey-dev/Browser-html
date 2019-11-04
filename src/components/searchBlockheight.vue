@@ -54,13 +54,13 @@
           <span >{{trading_volume_judgment(scope.row.chainId,scope.row.txcount)}}</span>
         </template>
       </el-table-column>
-      <el-table-column
-        :label="$t('table.miner')"
-        align="center">
-        <template slot-scope="scope">
-          <span class="to_tr show_color_choose"  >{{scope.row.miner}}</span>
-        </template>
-      </el-table-column>
+      <!--<el-table-column-->
+        <!--:label="$t('table.miner')"-->
+        <!--align="center">-->
+        <!--<template slot-scope="scope">-->
+          <!--<span class="to_tr show_color_choose"  >{{scope.row.miner}}</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
     </el-table>
     <el-pagination
       background

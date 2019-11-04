@@ -1,6 +1,7 @@
 import {getChainInfoStruct} from '../api/interface'
 import moment from 'moment'
-
+import BigNumber from "bignumber.js"
+import Iban from '../../static/web3-eth-iban/src/index'
 export default {
   install(Vue, opt) {
     /*table=>header颜色*/
@@ -89,16 +90,58 @@ export default {
     /*金额转换*/
     Vue.prototype.scientificCounting = function (e) {
       let num = 0
-      if (e == 0 || e == '' || e == null || e == undefined) {
+      if (e == 0 || e == '' || e == null || e == undefined || e == NaN) {
         num = 0
       } else {
-        num = (e / 1e18)
-
-        if(num >1){
-          num = (e / 1e18).toFixed(6)
-        }
+        num = new BigNumber(`${e}`).div("1e+18").toString(10);
+        // if(num.indexOf('.') !== -1 && num.split('.')[1].length > 6){
+        //   num = parseFloat(num).toFixed(6)
+        // }
       }
       return num
+    }
+    /*地址正常截取*/
+    Vue.prototype.slice_hash = function (e) {
+      if (e == '' || e == null || e == undefined) {
+        return ''
+      } else {
+        // e=this.to_32_decimal(e)
+        let a = e.slice(0, 4)
+        let b = e.substring(e.length - 4)
+        let c = a + ' *** ' + b
+        return c
+      }
+    }
+    /*地址转32后正常截取*/
+    Vue.prototype.slice_address = function (e) {
+      if (e == '' || e == null || e == undefined) {
+        return ''
+      } else {
+        e = this.to_32_decimal(e)
+        let a = e.slice(0, 4)
+        let b = e.substring(e.length - 4)
+        let c = a + ' *** ' + b
+        return c
+      }
+    }
+    /*地址转32*/
+    Vue.prototype.slice_address1 = function (e) {
+      if (e == '' || e == null || e == undefined) {
+        return ''
+      } else {
+        let c = this.to_32_decimal(e)
+        return c
+      }
+    }
+    /*16进制转32进制*/
+    Vue.prototype.to_32_decimal = function (e) {
+      let ban = Iban.toIban(e);
+      return ban
+    }
+    /*32进制转16进制*/
+    Vue.prototype.to_16_decimal = function (e) {
+      let ban = Iban.toAddress(e);
+      return ban
     }
   }
 }

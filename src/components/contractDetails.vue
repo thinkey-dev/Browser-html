@@ -1,7 +1,7 @@
 <template>
   <div class="sbh_con">
     <div class="con_title" style="font-size: 17px">
-      {{$t('table.contract')}}： <span style="color: #82848a;margin-left: 20px">{{all_data.contract}}</span>
+      {{$t('table.contract')}}： <span style="color: #82848a;margin-left: 20px">{{slice_address1(all_data.contract)}}</span>
     </div>
     <div class="con_title" style="font-size: 17px">
       {{$t('table.own_chain')}}：
@@ -41,14 +41,14 @@
         :label="$t('table.initiator')"
         align="center">
         <template slot-scope="scope">
-          <span class="to_tr show_color_choose" @click="to_address_details(all_data.chainId,all_data.from)">{{slice_hash(scope.row.from)}}</span>
+          <span class="to_tr show_color_choose" @click="to_address_details(all_data.chainId,all_data.from)">{{slice_address(scope.row.from)}}</span>
         </template>
       </el-table-column>
       <el-table-column
         :label="$t('table.receiver')"
         align="center">
         <template slot-scope="scope">
-          <span>{{slice_hash(scope.row.to)}}</span>
+          <span>{{slice_address(scope.row.to)}}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -58,13 +58,13 @@
           <span>{{scientificCounting(scope.row.value)}} TUE</span>
         </template>
       </el-table-column>
-      <el-table-column
-        :label="$t('table.transaction_fee')"
-        align="center">
-        <template slot-scope="scope">
-          <span>{{scientificCounting(scope.row.txCost)}} TUE</span>
-        </template>
-      </el-table-column>
+      <!--<el-table-column-->
+        <!--:label="$t('table.transaction_fee')"-->
+        <!--align="center">-->
+        <!--<template slot-scope="scope">-->
+          <!--<span>{{scientificCounting(scope.row.txCost)}} TUE</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
     </el-table>
     <el-pagination
       background

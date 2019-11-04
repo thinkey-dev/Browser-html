@@ -318,7 +318,7 @@
         align="center">
         <template slot-scope="scope">
           <span class="to_tr color_choose"
-                @click="to_address_interface(0,scope.row.chainId,scope.row.from,scope.row.txType)">{{slice_hash(scope.row.from)}}</span>
+                @click="to_address_interface(0,scope.row.chainId,scope.row.from,scope.row.txType)">{{slice_address(scope.row.from)}}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -326,7 +326,7 @@
         align="center">
         <template slot-scope="scope">
           <span :class="scope.row.txType==1?'to_tr':'to_tr color_choose'"
-                @click="to_address_interface(1,scope.row.chainId,scope.row.to,scope.row.txType)">{{slice_hash(scope.row.to)}}</span>
+                @click="to_address_interface(1,scope.row.chainId,scope.row.to,scope.row.txType)">{{slice_address(scope.row.to)}}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -499,19 +499,9 @@
 
         } else {
           // console.log()
-          if(this.search_transaction.length==42){
-            // function getChainidNum(address, list){
-            //   let str = address.slice(0,4);
-            //   let bytestring = Number(str);
-            //   list.sort((ar1,ar2)=>{
-            //     return parseInt(ar1) - parseInt(ar2)
-            //   })
-            //   let ids = parseInt(list[0]);
-            //   let chainID = ids + (bytestring >> 7);
-            //   return chainID.toString();
-            // }
-            // let chain_s=getChainidNum(this.search_transaction,['3','4'])
-            let data = {"chainId": '', "address": this.search_transaction}
+          if(this.search_transaction.length == 35){
+            let adress16=this.to_16_decimal(this.search_transaction)
+            let data = {"chainId": '', "address":adress16}
             this.$store.dispatch('app/setAddressDetails', data).then(() => {
               this.$router.push({path: '/address_details'})
             })
