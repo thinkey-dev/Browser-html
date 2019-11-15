@@ -19,7 +19,6 @@
     <div class="con_title " style="margin-top:80px">
       {{$t("title.block_information")}}
     </div>
-    <!--区块信息-->
     <el-table
       :data="tableData"
       border
@@ -94,7 +93,6 @@
         }
       },
       methods:{
-        /*分页查询数据*/
         currentPageChange(e){
           this.currentPage=e
           this.loading = true
@@ -116,7 +114,6 @@
             }
           })
         },
-        /*chainid_转换中文*/
         chainid_change_zh(e) {
           let a = ''
           this.chain_list.zh_chain_arr.forEach((item, index) => {
@@ -126,7 +123,6 @@
           })
           return a
         },
-        /*chainid_转换英文*/
         chainid_change_en(e) {
           let a = ''
           this.chain_list.en_chain_arr.forEach((item, index) => {
@@ -136,7 +132,6 @@
           })
           return a
         },
-        /*初始化获取数据*/
         getBlockDataByPage() {
           this.loading = true
           let data=this.$store.getters.main_chainblock
@@ -152,7 +147,6 @@
           })
 
         },
-        /*区块详情查询*/
         block_details_query() {
           if (this.search_height == '') {
             if (this.$store.getters.language == 'en') {
@@ -186,13 +180,11 @@
           }
 
         },
-        /*只能输入数字*/
         handinput() {
           if (/[^\d]/.test(this.search_height)) {
             this.search_height = this.search_height.replace(/[^\d]/g, '');
           }
         },
-        /*点击区块信息高度跳转*/
         to_block_page(e, q) {
           this.chain_list.zh_chain_arr.forEach((item, index) => {
             if (e == item.value) {
@@ -221,7 +213,6 @@
             }
           })
         },
-        /*点击区块信息=》区块hash=》进入区块详情*/
         hash_jump_block(id, height, hash) {
           let a = ''
           this.chain_list.zh_chain_arr.forEach((item, index) => {
@@ -253,7 +244,6 @@
           }
 
         },
-        /*查看区块委员会*/
         to_block_chaincommittee(e) {
           this.chain_list.zh_chain_arr.forEach((item, index) => {
             if (e == item.value) {

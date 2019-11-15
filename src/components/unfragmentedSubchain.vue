@@ -26,7 +26,6 @@
     <div class="con_title " style="margin-top:80px">
       {{$t("title.block_information")}}
     </div>
-    <!--区块信息-->
     <el-table
       :data="all_block_data"
       border
@@ -82,7 +81,6 @@
     <div class="con_title " style="margin-top: 30px">
       {{$t("title.current_chain_transaction_information")}}
     </div>
-    <!--交易信息-->
     <el-table
       :data="tr_data"
       border
@@ -189,13 +187,11 @@
       }
     },
     methods: {
-      /*只能输入数字/字母*/
       handinput() {
         if (/[^\d]/.test(this.search_height)) {
           this.search_height = this.search_height.replace(/[\u0391-\uFFE5]/g, '');
         }
       },
-      /*chainid_转换中文*/
       chainid_change_zh(e) {
         let a = ''
         this.chain_list.zh_chain_arr.forEach((item, index) => {
@@ -205,7 +201,6 @@
         })
         return a
       },
-      /*chainid_转换英文*/
       chainid_change_en(e) {
         let a = ''
         this.chain_list.en_chain_arr.forEach((item, index) => {
@@ -215,7 +210,6 @@
         })
         return a
       },
-      /*交易类型转换中文*/
       tr_change_zh(e) {
         let a = ''
         this.tr_zh.forEach((item, index) => {
@@ -225,7 +219,6 @@
         })
         return a
       },
-      /*交易类型转换英文*/
       tr_change_en(e) {
         let a = ''
         this.tr_en.forEach((item, index) => {
@@ -235,7 +228,6 @@
         })
         return a
       },
-      /*获取区块详情*/
       go_search_height() {
         this.loading2 = true
         let data = {
@@ -256,7 +248,6 @@
         })
 
       },
-      /*获取交易信息*/
       getBlockNewTxPage() {
         this.loading1 = true
         let data = {
@@ -271,7 +262,6 @@
           this.loading1 = false
         })
       },
-      /*区块高度查询*/
       block_height_query() {
         if (this.search_height == '') {
           if (this.$store.getters.language == 'en') {
@@ -316,7 +306,6 @@
           })
         }
       },
-      /*查看更多区块信息*/
       more_block_information() {
         let data = {
           "height": '',
@@ -330,7 +319,6 @@
         })
 
       },
-      /*点击区块信息高度跳转*/
       to_block_details(e, q) {
         let data = {
           "height": q.toString(),
@@ -343,7 +331,6 @@
         })
 
       },
-      /*查看更多交易信息*/
       more_transaction_information() {
         let data = {
           "chainId": this.get_data.chainId.toString(),
@@ -355,7 +342,6 @@
           this.$router.push({path: '/trading_information'})
         })
       },
-      /*点击区块信息=》区块hash=》进入区块详情*/
       query_block_hash(id, height, hash) {
         let data = {
           "height": height.toString(),
@@ -367,14 +353,12 @@
           this.$router.push({path: '/slicechain_blockdetails'})
         })
       },
-      /*查看区块委员会*/
       to_block_chaincommittee(e) {
         let data = {"chainId": e.toString(), "epoch": ''}
         this.$store.dispatch('app/setUnmainChaincommittee', data).then(() => {
           this.$router.push({path: '/fragmentchain_committee'})
         })
       },
-      /*点击交易信息=>交易hash=>到达几种交易详情*/
       to_transaction_details(id,type,hash){
         let data = {
           'page': 1,
@@ -382,37 +366,31 @@
           'hash': hash,
           'pagesize': 5,
         }
-        /*链内交易√*/
         if (type == 3) {
           this.$store.dispatch('app/setSearchTr1', data).then(() => {
             this.$router.push({path: '/intrachain_transfer'})
           })
         }
-        /*合约交易*/
         else if (type == 2) {
           this.$store.dispatch('app/setSearchTr3', data).then(() => {
             this.$router.push({path: '/contract_transaction'})
           })
         }
-        /*合约发布*/
         else if (type == 1) {
           this.$store.dispatch('app/setSearchTr4', data).then(() => {
             this.$router.push({path: '/contract_release'})
           })
         }
-        /*跨链转账取款√*/
         else if (type == 4) {
           this.$store.dispatch('app/setSearchTr2', data).then(() => {
             this.$router.push({path: '/transfer_withdrawal'})
           })
         }
-        /*跨链转账存款√*/
         else if (type == 5) {
           this.$store.dispatch('app/setSearchTr5', data).then(() => {
             this.$router.push({path: '/transfer_deposit'})
           })
         }
-        /*跨链转账撤销√*/
         else if (type == 6) {
           this.$store.dispatch('app/setSearchTr6', data).then(() => {
             this.$router.push({path: '/transfer_cancellation'})
@@ -421,7 +399,6 @@
 
 
       },
-      /*点击交易=>发起方---接收方=》信息地址查看*/
       to_address_details(peo, id, address, type) {
         if (peo == 0) {
           let data = {"chainId": id, "address": address}
@@ -450,7 +427,6 @@
         }
 
       },
-      // /*定时刷新数据*/
       updata_all(){
         let _this = this
         this.set_sta = setInterval(function () {

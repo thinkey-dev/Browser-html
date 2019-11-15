@@ -1,13 +1,12 @@
 import axios from 'axios'
 import {Message, MessageBox} from 'element-ui'
-// 创建axios实例
 const service = axios.create({
   // baseURL: document.location.protocol+'PublicChainBrowser/'+ window.location.search,
   baseURL: 'http://browser.thinkey.org/PublicChainBrowser/',
   // baseURL: 'https://publicchain.thinkey.xyz/PublicChainBrowser/',
   // baseURL: 'http://192.168.1.108:8500/PublicChainBrowser/',
-  // withCredentials: true, // 跨域请求时发送 cookies
-  timeout: 200000 // 请求超时时间
+  // withCredentials: true,
+  timeout: 200000
 })
 service.interceptors.response.use(
   response => {
@@ -19,7 +18,6 @@ service.interceptors.response.use(
     }
   },
   error => {
-    /*打印错误信息*/
     console.log('err' + error)
     let msg = ''
     if (error == 'Error: timeout of 200000ms exceeded') {

@@ -3,45 +3,25 @@ import Cookies from 'js-cookie'
 
 const state = {
   language: getLanguage(),
-  /*主页搜索区块高度*/
   home_search_height: '',
-  /*====>链内交易√*/
   home_search_tr_1: '',
-  /*====>跨链转账取款√*/
   home_search_tr_2: '',
-  /*====>合约交易*/
   home_search_tr_3: '',
-  /*====>合约发布*/
   home_search_tr_4: '',
-  /*====>跨链转账存款*/
   home_search_tr_5: '',
-  /*====>跨链转账撤销*/
   home_search_tr_6: '',
-  /*====>区块详情/主链/已分片子链/*/
   crosschain_to_block_detil: '',
-  /*====>区块详情/未分片子链链/分片链*/
   crosschain_to_block_detil_1: '',
-  /*====>主链====>交易信息*/
   main_chain_to_tr: '',
-  /*====>委员会详情/主链/已分片子链*/
   main_chaincommittee: '',
-  /*====>委员会详情/未分片子链/分片链*/
   main_unchaincommittee: '',
-  /*====>链详情/已分片子链*/
   fragmented_details: '',
-  /*====>链详情/未分片子链*/
   unfragmented_details: '',
-  /*====>查看全部区块/未分片子链/分片链*/
   unmain_chainblock: '',
-  /*====>查看全部区块/主链/已分片子链*/
   main_chainblock: '',
-  /*====>地址详情*/
   address_details: '',
-  /*====>合约详情*/
   contract_details: '' ,
-  /*====>跨链转账合约详情*/
   cross_chain_contract: '',
-  /*未分片子链/分片链==>点击交易信息==>区块内交易详情*/
   wei_to_de:'',
 }
 const mutations = {

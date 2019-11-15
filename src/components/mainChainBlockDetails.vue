@@ -134,7 +134,6 @@
 
     },
     methods: {
-      /*交易类型转换中文*/
       tr_change_zh(e) {
         let a = ''
         this.tr_zh.forEach((item, index) => {
@@ -144,7 +143,6 @@
         })
         return a
       },
-      /*交易类型转换英文*/
       tr_change_en(e) {
         let a = ''
         this.tr_en.forEach((item, index) => {
@@ -154,7 +152,6 @@
         })
         return a
       },
-      /*初始化获取数据*/
       initialize_data() {
         let data = this.$store.getters.crosschain_to_block_detil
         getBlockDataByPage(data).then(response => {
@@ -182,7 +179,6 @@
           }
         })
       },
-      /*切换*/
       block_switching(e) {
         if (e == 0) {
           this.is_height = Number(this.is_height) - 1
@@ -223,7 +219,6 @@
           }
         })
       },
-      /*chainid_转换中文*/
       chainid_change_zh(e) {
         let a = ''
         this.chain_list.zh_chain_arr.forEach((item, index) => {
@@ -233,7 +228,6 @@
         })
         return a
       },
-      /*chainid_转换英文*/
       chainid_change_en(e) {
         let a = ''
         this.chain_list.en_chain_arr.forEach((item, index) => {
@@ -243,14 +237,12 @@
         })
         return a
       },
-      /*点击单个参选成员=》地址详情跳转*/
       to_address_details(e) {
         let data = {"chainId": this.$store.getters.crosschain_to_block_detil.chainId.toString(), "address": e}
         this.$store.dispatch('app/setAddressDetails', data).then(() => {
           this.$router.push({path: '/address_details'})
         })
       },
-      /*进入主链或已分片子链界面*/
       to_fragmented_chain(e) {
         if (e == 0) {
           this.$router.push({path: '/main_chain'})
@@ -262,7 +254,6 @@
         }
 
       },
-      /*查看已分片链链委员会*/
       to_main_chaincommittee(q) {
         let data = {"chainId": q.toString(), "epoch": ''}
         this.$store.dispatch('app/setMainChaincommittee', data).then(() => {

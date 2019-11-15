@@ -97,7 +97,6 @@
         this.currentPage = e
         this.change_search_height(2)
       },
-      /*区块详情查询*/
       block_details_query() {
         this.loading = true
         let data = this.$store.getters.home_search_height
@@ -134,7 +133,6 @@
           this.tableData = response.data.dataList
         })
       },
-      /*chainid_转换中文*/
       chainid_change_zh(e) {
         let a = ''
         this.chain_list.zh_chain_arr.forEach((item, index) => {
@@ -144,7 +142,6 @@
         })
         return a
       },
-      /*chainid_转换英文*/
       chainid_change_en(e) {
         let a = ''
         this.chain_list.en_chain_arr.forEach((item, index) => {
@@ -154,7 +151,6 @@
         })
         return a
       },
-      /*链跳转*/
       to_chain(e) {
         if (e == 0) {
           this.$router.push({path: '/main_chain'})
@@ -178,7 +174,6 @@
           })
         }
       },
-      /*点击区块信息=》区块hash=》进入区块详情*/
       to_block_details(id, height, hash) {
         let a = ''
         this.chain_list.zh_chain_arr.forEach((item, index) => {

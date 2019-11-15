@@ -132,7 +132,6 @@
       }
     },
     methods: {
-      /*数据分页*/
       currentPage_change(e) {
 
         this.currentPage = e
@@ -149,7 +148,6 @@
           this.tableData = response.data.dataList
         })
       },
-      /*chainid_转换中文*/
       chainid_change_zh(e) {
         let a = ''
         this.chain_list.zh_chain_arr.forEach((item, index) => {
@@ -159,7 +157,6 @@
         })
         return a
       },
-      /*chainid_转换英文*/
       chainid_change_en(e) {
         let a = ''
         this.chain_list.en_chain_arr.forEach((item, index) => {
@@ -169,7 +166,6 @@
         })
         return a
       },
-      /*初始化获取数据*/
       initialization_data() {
         this.loading = true
         let data = {'chainId': this.all_data.chainId, "epoch": ''}

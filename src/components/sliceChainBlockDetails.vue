@@ -134,7 +134,6 @@
       }
     },
     methods: {
-      /*交易类型转换中文*/
       tr_change_zh(e) {
         let a = ''
         this.tr_zh.forEach((item, index) => {
@@ -144,7 +143,6 @@
         })
         return a
       },
-      /*交易类型转换英文*/
       tr_change_en(e) {
         let a = ''
         this.tr_en.forEach((item, index) => {
@@ -154,7 +152,6 @@
         })
         return a
       },
-      /*初始化获取数据*/
       initialization_data() {
         let data = this.$store.getters.crosschain_to_block_detil_1
         getBlockDataByPage(data).then(response => {
@@ -184,7 +181,6 @@
           }
         })
       },
-      /*切换=>点击父块hash等同于切换上一块*/
       block_switching(e) {
         if (e == 0) {
           this.is_height = Number(this.is_height) - 1
@@ -227,7 +223,6 @@
         })
 
       },
-      /*chainid_转换中文*/
       chainid_change_zh(e) {
         let a = ''
         this.chain_list.zh_chain_arr.forEach((item, index) => {
@@ -237,7 +232,6 @@
         })
         return a
       },
-      /*chainid_转换英文*/
       chainid_change_en(e) {
         let a = ''
         this.chain_list.en_chain_arr.forEach((item, index) => {
@@ -247,7 +241,6 @@
         })
         return a
       },
-      /*点击跳转到区块内交易详情界面*/
       to_transaction_details(e) {
         let data = {
           'page': 1,
@@ -261,14 +254,12 @@
         })
 
       },
-      /*查看委员会成员*/
       to_committee_member() {
         let data = {"chainId": this.$store.getters.crosschain_to_block_detil_1.chainId.toString(), "epoch": ''}
         this.$store.dispatch('app/setUnmainChaincommittee', data).then(() => {
           this.$router.push({path: '/fragmentchain_committee'})
         })
       },
-      /*点击单个参选成员=》地址详情跳转*/
       to_address_details(e) {
         let data = {"chainId": this.$store.getters.crosschain_to_block_detil_1.chainId.toString(), "address": e}
         this.$store.dispatch('app/setAddressDetails', data).then(() => {

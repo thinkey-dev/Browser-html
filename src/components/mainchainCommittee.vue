@@ -121,7 +121,6 @@
       }
     },
     methods: {
-      /*数据分页*/
       currentPageChange(e) {
 
         this.currentPage = e
@@ -138,7 +137,6 @@
           this.tableData = response.data.dataList
         })
       },
-      /*chainid_转换中文*/
       chainid_change_zh(e) {
         let a = ''
         this.chain_list.zh_chain_arr.forEach((item, index) => {
@@ -148,7 +146,6 @@
         })
         return a
       },
-      /*chainid_转换英文*/
       chainid_change_en(e) {
         let a = ''
         this.chain_list.en_chain_arr.forEach((item, index) => {
@@ -158,7 +155,6 @@
         })
         return a
       },
-      /*初始化获取数据*/
       initialization_data() {
         this.loading = true
         let data = {'chainId': this.all_data.chainId, "epoch": ''}
@@ -181,7 +177,6 @@
         })
 
       },
-      /*轮次切换*/
       round_switch(e) {
         if (e == 0) {
           let data
@@ -246,7 +241,6 @@
           })
         }
       },
-      /*跳转到对应链*/
       to_chain(e) {
         let data = {"chainId":e.toString()}
         if(this.$store.getters.crosschain_to_block_detil.chainId==0){
@@ -257,14 +251,12 @@
           })
         }
       },
-      /*点击单个参选成员=》地址详情跳转*/
       to_address_details(e){
         let data = {"chainId":this.all_data.chainId.toString(), "address": e}
         this.$store.dispatch('app/setAddressDetails', data).then(() => {
           this.$router.push({path: '/address_details'})
         })
       },
-      /*点击区块信息高度跳转*/
       height_query_block(e, q,w) {
         let data = {
           "height": q.toString(),

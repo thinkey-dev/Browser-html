@@ -119,7 +119,6 @@
       }
     },
     methods: {
-      /*chainid_转换中文*/
       chainid_change_zh(e) {
         let a = ''
         this.chain_list.zh_chain_arr.forEach((item, index) => {
@@ -129,7 +128,6 @@
         })
         return a
       },
-      /*chainid_转换英文*/
       chainid_change_en(e) {
         let a = ''
         this.chain_list.en_chain_arr.forEach((item, index) => {
@@ -139,7 +137,6 @@
         })
         return a
       },
-      /*获取初始化内容*/
       initialization_data(e) {
         let lan = {"locale": e}
         getfile(lan).then(response => {

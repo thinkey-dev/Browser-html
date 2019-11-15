@@ -4,13 +4,11 @@ import BigNumber from "bignumber.js"
 import Iban from '../../static/web3-eth-iban/src/index'
 export default {
   install(Vue, opt) {
-    /*table=>header颜色*/
     Vue.prototype.tableHeaderColor = function ({row, column, rowIndex, columnIndex}) {
       if (rowIndex === 0) {
         return 'background-color:#ffffff ;color: #333;font-weight: 600;font-size: 15px;height:58px;'
       }
     }
-    /*hash字符串截取*/
     Vue.prototype.slice_hash = function (e) {
       if (e == '' || e == null || e == undefined) {
         return ''
@@ -21,7 +19,6 @@ export default {
         return c
       }
     }
-    /*链列表*/
     Vue.prototype.getChainInfoStruct = function (e) {
       let chain_list = {}
       chain_list.zh_chain_arr = [
@@ -77,7 +74,6 @@ export default {
       })
       return chain_list
     }
-    /*时间戳转换=>moment*/
     Vue.prototype.timestampToTime = function (timestamp) {
       let time = ''
       if (timestamp == '' || timestamp == null || timestamp == undefined) {
@@ -87,7 +83,6 @@ export default {
       }
       return time
     }
-    /*金额转换*/
     Vue.prototype.scientificCounting = function (e) {
       let num = 0
       if (e == 0 || e == '' || e == null || e == undefined || e == NaN) {
@@ -100,7 +95,6 @@ export default {
       }
       return num
     }
-    /*地址正常截取*/
     Vue.prototype.slice_hash = function (e) {
       if (e == '' || e == null || e == undefined) {
         return ''
@@ -112,7 +106,6 @@ export default {
         return c
       }
     }
-    /*地址转32后正常截取*/
     Vue.prototype.slice_address = function (e) {
       if (e == '' || e == null || e == undefined) {
         return ''
@@ -124,7 +117,6 @@ export default {
         return c
       }
     }
-    /*地址转32*/
     Vue.prototype.slice_address1 = function (e) {
       if (e == '' || e == null || e == undefined) {
         return ''
@@ -133,12 +125,10 @@ export default {
         return c
       }
     }
-    /*16进制转32进制*/
     Vue.prototype.to_32_decimal = function (e) {
       let ban = Iban.toIban(e);
       return ban
     }
-    /*32进制转16进制*/
     Vue.prototype.to_16_decimal = function (e) {
       let ban = Iban.toAddress(e);
       return ban
