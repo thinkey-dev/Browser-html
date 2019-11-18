@@ -420,6 +420,7 @@
     watch: {
       lang(a, b) {
         if (a == 'zh') {
+          let a=''
           this.is_zh = true
           this.options = this.chain_list.zh_chain_arr
           this.options1 = this.tr_zh
