@@ -16,8 +16,8 @@
       </div>
       <div class="tab_select" style="display: inline-block;float: right">
         <span class="go_home" @click="go_home()">{{$t("header.header_home")}}</span>
-        <!--<span class="go_home" @click="go_dev()"-->
-              <!--style="font-size: 14px">{{$t("header.header_development_document")}}</span>-->
+        <span class="go_home" @click="go_dev()"
+              style="font-size: 14px">{{$t("header.header_development_document")}}</span>
 
       </div>
 
